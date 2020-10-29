@@ -8,5 +8,6 @@ This application has been developed following the **Test Driven Development (TDD
     └── project             # Python project
         └── app
         │   ├── api         # API services
-        │   └── config      # Application configuration
+        │   ├── models      # ORM/Schema models
+        │   └── tests       # Integration/Unit tests
         └── db              # Database service
