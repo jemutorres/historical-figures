@@ -6,6 +6,7 @@ This application has been developed following the **Test Driven Development (TDD
 # Project Structure
 
     └── project             # Python project
-        └── app             
-            ├── api         # API services
-            └── config      # Application configuration
+        └── app
+        │   ├── api         # API services
+        │   └── config      # Application configuration
+        └── db              # Database service

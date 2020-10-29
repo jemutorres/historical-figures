@@ -1,0 +1,2 @@
+CREATE DATABASE historical_figures_dev;
+CREATE DATABASE historical_figures_test;
