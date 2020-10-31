@@ -11,6 +11,7 @@ services:
     ports:
       - 8002:8000
     environment:
+      - PYTHONPATH=/usr/src/app/
       - ENVIRONMENT=dev
       - TESTING=0
       - DATABASE_URL=postgres://postgres:postgres@db:5432/historical_figures_dev

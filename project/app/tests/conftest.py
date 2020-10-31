@@ -30,7 +30,7 @@ def __get_test_application__() -> FastAPI:
     return app
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="class")
 def test_app() -> Generator[TestClient, FastAPI, None]:
     """
     Instance the application to test
@@ -42,8 +42,8 @@ def test_app() -> Generator[TestClient, FastAPI, None]:
         yield test_client
 
 
-@pytest.fixture(scope="module")
-def test_app_with_db() -> Generator[TestClient, FastAPI, None]:
+@pytest.fixture(scope="class")
+def test_app_db() -> Generator[TestClient, FastAPI, None]:
     """
     Instance the application to test with database
     :return: test client to make requests
@@ -53,9 +53,9 @@ def test_app_with_db() -> Generator[TestClient, FastAPI, None]:
     register_tortoise(
         app,
         db_url=os.environ.get("DATABASE_TEST_URL"),
-        modules={"models": ["app.models.tortoise"]},
+        modules={"models": ["app.models"]},
         generate_schemas=True,
-        add_exception_handlers=True,
+        add_exception_handlers=True
     )
     with TestClient(app) as test_client:
         yield test_client
