@@ -35,7 +35,9 @@ async def create_figure(payload: FigureInputSchema) -> FigureOutputSchema:
 
 
 @router.put("/{id}/", response_model=FigureOutputSchema, status_code=200)
-async def update_figure(payload: FigureInputSchema, id: int = Path(..., gt=0)) -> FigureOutputSchema:
+async def update_figure(
+    payload: FigureInputSchema, id: int = Path(..., gt=0)
+) -> FigureOutputSchema:
     """
     HTTP PUT method to update a figure
     """
@@ -48,7 +50,7 @@ async def delete_figure(id: int = Path(..., gt=0)) -> AppOutputSchema:
     HTTP DELETE method to remove a figure
     """
     await api.delete_entity(Figure, id)
-    return AppOutputSchema(message='Figure deleted successfully')
+    return AppOutputSchema(message="Figure deleted successfully")
 
 
 @router.post("/{id}/votes/up/", response_model=AppOutputSchema, status_code=200)
@@ -56,8 +58,8 @@ async def vote_up_figure(id: int = Path(..., gt=0)) -> FigureOutputSchema:
     """
     HTTP POST method to vote up a figure
     """
-    await api.increase_value_entity(Figure, 'votes', id)
-    return AppOutputSchema(message='Figure voted down successfully')
+    await api.increase_value_entity(Figure, "votes", id)
+    return AppOutputSchema(message="Figure voted down successfully")
 
 
 @router.post("/{id}/votes/down/", response_model=AppOutputSchema, status_code=200)
@@ -65,5 +67,5 @@ async def vote_down_figure(id: int = Path(..., gt=0)) -> AppOutputSchema:
     """
     HTTP POST method to vote down a figure
     """
-    await api.decrease_value_entity(Figure, 'votes', id)
-    return AppOutputSchema(message='Figure voted down successfully')
+    await api.decrease_value_entity(Figure, "votes", id)
+    return AppOutputSchema(message="Figure voted down successfully")

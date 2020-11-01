@@ -16,7 +16,9 @@ def __get_settings_override__() -> ApplicationSettings:
     :return: Object with the application's configuration
     :rtype: ApplicationSettings
     """
-    return ApplicationSettings(testing=1, database_url=os.environ.get("DATABASE_TEST_URL"))
+    return ApplicationSettings(
+        testing=1, database_url=os.environ.get("DATABASE_TEST_URL")
+    )
 
 
 def __get_test_application__() -> FastAPI:
@@ -55,7 +57,7 @@ def test_app_db() -> Generator[TestClient, FastAPI, None]:
         db_url=os.environ.get("DATABASE_TEST_URL"),
         modules={"models": ["app.models"]},
         generate_schemas=True,
-        add_exception_handlers=True
+        add_exception_handlers=True,
     )
     with TestClient(app) as test_client:
         yield test_client

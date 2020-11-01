@@ -3,7 +3,9 @@ from typing import Union, List, Type, Dict
 from app.models.app_model import AppModel
 
 
-async def get(model: Type[AppModel], identifier: int, filters: Dict = None) -> Union[Dict, None]:
+async def get(
+    model: Type[AppModel], identifier: int, filters: Dict = None
+) -> Union[Dict, None]:
     """
     Get an object and return it
     :param model: entity model to find
@@ -19,7 +21,9 @@ async def get(model: Type[AppModel], identifier: int, filters: Dict = None) -> U
     return None
 
 
-async def get_all(model: Type[AppModel], filters: Dict = None) -> List[Union[Dict, None]]:
+async def get_all(
+    model: Type[AppModel], filters: Dict = None
+) -> List[Union[Dict, None]]:
     """
     Get a list of objects and return it
     :param model: entity model to find
@@ -63,7 +67,9 @@ async def put(model: Type[AppModel], data: Dict, identifier: int) -> Union[Dict,
     return None
 
 
-async def delete(model: Type[AppModel], identifier: int, filters: Dict = None) -> Union[int, None]:
+async def delete(
+    model: Type[AppModel], identifier: int, filters: Dict = None
+) -> Union[int, None]:
     """
     Delete an object
     :param model: entity model to find

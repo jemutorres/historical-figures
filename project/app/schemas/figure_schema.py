@@ -13,6 +13,7 @@ class FigureInputSchema(AppSchema):
     """
     Schema to create/update a figure
     """
+
     name: constr(max_length=50)
     description: str
     birth_date: date

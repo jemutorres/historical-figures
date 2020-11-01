@@ -9,6 +9,7 @@ class QuestionOutputSchema(AppSchema.model_creator(Question)):
     """
     Schema to return a question
     """
+
     figure_id: int
 
 
@@ -16,5 +17,6 @@ class QuestionInputSchema(AppSchema):
     """
     Schema to create/update a question
     """
+
     question: constr(max_length=300)
     author: Optional[constr(max_length=50)]

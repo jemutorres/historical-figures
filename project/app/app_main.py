@@ -4,7 +4,7 @@ import os
 from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
 
-from app.api import ping_router, figure_router, question_router
+from app.api import figure_router, ping_router, question_router
 
 logger = logging.getLogger(__name__)
 
@@ -28,15 +28,17 @@ def create_application() -> FastAPI:
     :return: Application instance
     :rtype: FastAPI
     """
-    application = FastAPI(title="Historical Figures Repository",
-                          description="Interactive repository for History students",
-                          version="1.0")
-    application.include_router(ping_router.router)
-    application.include_router(
-        figure_router.router, prefix="/figures", tags=["Figure"]
+    application = FastAPI(
+        title="Historical Figures Repository",
+        description="Interactive repository for History students",
+        version="1.0",
     )
+    application.include_router(ping_router.router)
+    application.include_router(figure_router.router, prefix="/figures", tags=["Figure"])
     application.include_router(
-        question_router.router, prefix="/figures/{figure_id}/questions", tags=["Question"]
+        question_router.router,
+        prefix="/figures/{figure_id}/questions",
+        tags=["Question"],
     )
     return application
 

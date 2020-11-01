@@ -8,7 +8,9 @@ from app.models.app_model import AppModel
 router = APIRouter()
 
 
-async def read_entity(model: Type[AppModel], id: int, filters: Dict = None) -> Union[Dict, None]:
+async def read_entity(
+    model: Type[AppModel], id: int, filters: Dict = None
+) -> Union[Dict, None]:
     """
     HTTP GET method to return a entity. Raise HTTPException if not found
     :param model: entity model to find
@@ -19,12 +21,14 @@ async def read_entity(model: Type[AppModel], id: int, filters: Dict = None) -> U
     """
     entity = await crud.get(model, id, filters)
     if not entity:
-        raise HTTPException(status_code=404, detail=f'{model.__name__} not found')
+        raise HTTPException(status_code=404, detail=f"{model.__name__} not found")
 
     return entity
 
 
-async def read_all_entities(model: Type[AppModel], filters: Dict = None) -> List[Union[Dict, None]]:
+async def read_all_entities(
+    model: Type[AppModel], filters: Dict = None
+) -> List[Union[Dict, None]]:
     """
     HTTP GET method to return all result of a entity
     :param model: entity model to find
@@ -47,7 +51,9 @@ async def create_entity(model: Type[AppModel], payload: Dict) -> AppModel:
     return entity
 
 
-async def update_entity(model: Type[AppModel], payload: Dict, id: int) -> Union[Dict, None]:
+async def update_entity(
+    model: Type[AppModel], payload: Dict, id: int
+) -> Union[Dict, None]:
     """
     HTTP PUT method to update a entity
     :param model: entity model to find
@@ -58,7 +64,7 @@ async def update_entity(model: Type[AppModel], payload: Dict, id: int) -> Union[
     """
     entity = await crud.put(model, payload, id)
     if not entity:
-        raise HTTPException(status_code=404, detail=f'{model.__name__} not found')
+        raise HTTPException(status_code=404, detail=f"{model.__name__} not found")
 
     return entity
 
@@ -72,7 +78,7 @@ async def delete_entity(model: Type[AppModel], id: int, filters: Dict = None) ->
     """
     entity = await crud.delete(model, id, filters)
     if not entity:
-        raise HTTPException(status_code=404, detail=f'{model.__name__} not found')
+        raise HTTPException(status_code=404, detail=f"{model.__name__} not found")
 
 
 async def increase_value_entity(model: Type[AppModel], value: str, id: int) -> None:
@@ -84,7 +90,7 @@ async def increase_value_entity(model: Type[AppModel], value: str, id: int) -> N
     """
     entity = await crud.get(model, id)
     if not entity:
-        raise HTTPException(status_code=404, detail=f'{model.__name__} not found')
+        raise HTTPException(status_code=404, detail=f"{model.__name__} not found")
 
     await crud.put(model, {value: entity[value] + 1}, id)
 
@@ -98,5 +104,5 @@ async def decrease_value_entity(model: Type[AppModel], value: str, id: int) -> N
     """
     entity = await crud.get(model, id)
     if not entity:
-        raise HTTPException(status_code=404, detail=f'{model.__name__} not found')
+        raise HTTPException(status_code=404, detail=f"{model.__name__} not found")
     await crud.put(model, {value: entity[value] - 1}, id)

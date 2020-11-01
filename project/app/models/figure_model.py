@@ -8,6 +8,7 @@ class Figure(AppModel):
     """
     Class that define a figure of a character
     """
+
     name = fields.CharField(max_length=50)
     description = fields.TextField()
     birth_date = fields.DateField()
@@ -17,7 +18,7 @@ class Figure(AppModel):
 
     @staticmethod
     def __name__() -> str:
-        return 'Figure'
+        return "Figure"
 
     def __str__(self) -> str:
-        return f'{self.name}, {self.description}'
+        return f"{self.name}, {self.description}"
