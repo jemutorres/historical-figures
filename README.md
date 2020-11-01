@@ -28,14 +28,6 @@ docker-compose up -d --build
         │   └── tests       # Integration/Unit tests
         └── db              # Database service
 
-## Installation
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-```bash
-pip install foobar
-```
-
 # Interactive API docs
 You could see [here](https://historical-figures-jemutorres.herokuapp.com/docs) the automatic interactive API documentation (provided by [Swagger UI](https://github.com/swagger-api/swagger-ui))
 
