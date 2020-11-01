@@ -1,6 +1,7 @@
 from tortoise import fields
 
 from app.models.app_model import AppModel
+from app.models.question_model import Question
 
 
 class Figure(AppModel):
@@ -12,6 +13,7 @@ class Figure(AppModel):
     birth_date = fields.DateField()
     death_date = fields.DateField(null=True)
     votes = fields.IntField(default=0)
+    questions = fields.ReverseRelation[Question]
 
     @staticmethod
     def __name__() -> str:

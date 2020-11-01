@@ -121,4 +121,33 @@ class TestFigure:
         figure_id = self.__create_test_figure__().json()['id']
         response = self._test_app_db.delete(f'/figures/{figure_id}/')
         assert response.status_code == 200
-        assert response.json()['id'] == figure_id
+
+    def test_vote_up_figure(self):
+        """
+        Test to vote up a figure
+        """
+        figure = self.__create_test_figure__().json()
+        figure_id, figure_votes = figure['id'], figure['votes']
+        assert figure_votes == 0
+
+        response = self._test_app_db.post(f'/figures/{figure_id}/votes/up/')
+        assert response.status_code == 200
+
+        response = self._test_app_db.get(f'/figures/{figure_id}/')
+        assert response.status_code == 200
+        assert response.json()['votes'] > figure_votes
+
+    def test_vote_down_figure(self):
+        """
+        Test to vote down a figure
+        """
+        figure = self.__create_test_figure__().json()
+        figure_id, figure_votes = figure['id'], figure['votes']
+        assert figure_votes == 0
+
+        response = self._test_app_db.post(f'/figures/{figure_id}/votes/down/')
+        assert response.status_code == 200
+
+        response = self._test_app_db.get(f'/figures/{figure_id}/')
+        assert response.status_code == 200
+        assert response.json()['votes'] < figure_votes

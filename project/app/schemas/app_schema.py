@@ -20,3 +20,11 @@ class AppSchema(BaseModel):
         :rtype: Type[BaseModel]
         """
         return pydantic_model_creator(model)
+
+
+class AppOutputSchema(BaseModel):
+    """
+    Standard output schema class of the application
+    """
+
+    message: str
